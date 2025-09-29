@@ -18,10 +18,13 @@ export default function Modal({ onClose, children }: ModalProps) {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
-    window.addEventListener('keydown', handleEsc);
+   document.addEventListener('keydown', handleEsc);
+       document.body.style.overflow = 'hidden';
+
 
     return () => {
-      window.removeEventListener('keydown', handleEsc);
+     document.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = '';
     };
   }, [onClose]);
 

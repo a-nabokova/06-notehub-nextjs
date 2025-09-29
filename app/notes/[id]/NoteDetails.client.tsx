@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
 import { getSingleNote } from '../../../lib/api'
-import css from './NoteDeails.module.css'
+import css from './NoteDetails.module.css'
 
 const NoteDetailsClient = () => {
   const { id } = useParams<{ id: string }>()
@@ -14,13 +14,15 @@ const NoteDetailsClient = () => {
     refetchOnMount: false,
   })
 
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <p>Loading, please wait...</p>;
 
-  if (error || !note) return <p>Some error..</p>;
+   if (error || !note) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    return <p>Error: {errorMessage}</p>
+  }
 
-  const formattedDate = note.updatedAt
-    ? `Updated at: ${note.updatedAt}`
-    : `Created at: ${note.createdAt}`;
+  const formattedDate = `Created at: ${note.createdAt}`;
+
 
   return (
     <div className={css.container}>

@@ -5,7 +5,7 @@ import {  type DebouncedState } from 'use-debounce';
 
 interface SearchBoxProps {
   value: string;
-  onChange: DebouncedState<(value: string) => void>;
+  onChange: (value: string) => void;
 }
 
 export default function SearchBox({ value, onChange }: SearchBoxProps) {

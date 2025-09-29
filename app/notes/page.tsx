@@ -6,14 +6,14 @@ import NotesClient from './Notes.client'
 
 
   const NotesPage = async ({
-  params,
+  searchParams,
 }: {
-  params: { search: string; page: string };
+  searchParams: { search?: string; page?: string };
 }) => {
   const queryClient = new QueryClient();
 
-   const { search = '', page: pageStr = '1' } = params;
-  const page = Number(pageStr);
+    const search = searchParams.search ?? '';
+  const page = Number(searchParams.page ?? '1');
   const perPage = 12;
 
   await queryClient.prefetchQuery({

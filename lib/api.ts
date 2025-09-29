@@ -1,14 +1,13 @@
 import axios from "axios";
-import type { Note } from "../app/types/note";
+import type { Note, NoteTag } from "../types/note";
 
-const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
+ const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 
 
 interface FetchNotesResponse {
     notes: Note[];
     totalPages: number;
-    page: number;
-    perPage: number;
+    
 }
 
  
@@ -28,10 +27,10 @@ export default async function fetchNotes(page: number, perPage: number, search?:
 }
 
 
-interface CreateNotes {
+export interface CreateNotes {
      title: string;
     content: string;
-    tag: string; 
+    tag: NoteTag; 
     
 }
 
